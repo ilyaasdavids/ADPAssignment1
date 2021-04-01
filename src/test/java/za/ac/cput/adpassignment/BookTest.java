@@ -11,36 +11,59 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Timeout;
 
 /**
  *
  * @author CPUT
  */
 public class BookTest {
+    private Book book1;
+    private Book book2;
+    private Book book3;
     
     public BookTest() {
     }
     
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
     @BeforeEach
     public void setUp() {
+        Book book1 = new Book();
+        Book book2 = new Book();
+        book3 = book1;
     }
     
-    @AfterEach
-    public void tearDown() {
+//    Object Identity
+    @Test
+    void testIdentity(){
+        assertNotSame(book1, book3);
+    }
+    
+//    Object Equality
+    @Test
+    void testEquality(){
+        assertEquals(book1, book1);
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
+        public void testTimeout() {
+            for (int i = 0; i <= 10; i++){
+                System.out.println("Timeout Successed");
+            }
+        }
+    
+    @Test
+    @Disabled("Do not run ")
+    public void disabled() {
+        System.setProperty("book1", "book2");
     }
     
+    @Test 
+    public void failTest() {
+        fail("The Test Must Fail");
+        assertSame(book1, book3);
+    }
+   
 }
