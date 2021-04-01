@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author CPUT
  */
-public class ProgramTest {
+public class BookTest {
     
-    public ProgramTest() {
+    public BookTest() {
     }
     
     @BeforeAll
